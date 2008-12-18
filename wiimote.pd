@@ -1,4 +1,4 @@
-#N canvas 565 25 678 318 10;
+#N canvas 505 25 762 319 10;
 #N canvas 332 246 450 300 \$0-buttons 0;
 #X obj 41 33 inlet;
 #X obj 41 86 unpack 0 0;
@@ -40,7 +40,7 @@
 #X msg 450 -86 setLED 9;
 #X obj 630 -101 bng 15 250 50 0 empty empty empty 17 7 0 10 -4034 -1
 -1;
-#N canvas 0 60 1097 635 \$0-process-guitar 1;
+#N canvas 0 60 1097 635 \$0-process-guitar 0;
 #X obj 90 -69 inlet;
 #X msg 24 107 0;
 #X msg 61 107 1;
@@ -88,7 +88,7 @@
 #X msg 577 105 2;
 #X msg 545 105 0;
 #X obj 619 38 sel 17 65 9 33 81 25 73 97 41 49 89 105 121 113 57;
-#N canvas 180 291 471 385 \$0-minor-chord 1;
+#N canvas 180 291 471 385 \$0-minor-chord 0;
 #X obj 201 154 + 60;
 #X obj 346 154 + 65;
 #X obj 128 187 mtof;
@@ -132,7 +132,7 @@
 #X connect 18 0 16 0;
 #X restore 753 277 pd \$0-minor-chord;
 #X msg 1035 105 -1;
-#N canvas 66 264 450 404 \$0-lame-organ 1;
+#N canvas 66 264 450 404 \$0-lame-organ 0;
 #X obj 205 158 mtof;
 #X floatatom 205 185 5 0 0 0 - - -;
 #X obj 205 130 + 60;
@@ -174,7 +174,7 @@
 #X msg 460 107 -1;
 #X text 137 32 Down Stroke;
 #X text 678 14 Up Stroke;
-#N canvas 650 323 450 300 \$0-lead-tone 1;
+#N canvas 650 323 450 300 \$0-lead-tone 0;
 #X obj 31 19 inlet;
 #X obj 31 57 sel -1;
 #X msg 10 94 0;
@@ -295,11 +295,11 @@
 #X text 408 145 Uses the Youngmusic Wiilib PD external. It can be found
 here. http://youngmusic.org/wiki/index.php/Wiilib;
 #X msg 439 -113 discover;
-#X text 224 -78 On the wiimote press 1 + 2 Click on discover and wait
+#X text 290 69 On the wiimote press 1 + 2 Click on discover and wait
 until the wiimote connects. Click on the green bang. Click on disconnect
 to turn off the wiimote.;
-#X text 174 -121 This patch uses the guitar controller for the wii
-and a bluetooth interface.;
+#X text 6 -148 This patch uses the guitar controller for the wii and
+a bluetooth interface.;
 #X connect 2 0 3 0;
 #X connect 3 0 0 0;
 #X connect 3 1 9 0;
