@@ -1,4 +1,32 @@
-#N canvas 505 25 762 324 10;
+#N canvas 495 25 683 368 10;
+#X obj 8 -129 cnv 15 230 185 empty empty empty 20 12 0 14 -258113 -66577
+0;
+#X msg 52 3 disconnect;
+#X obj 18 26 s wiimote-command;
+#X msg 37 -67 reportClassic 1;
+#X msg 29 -93 setLED 9;
+#X obj 209 -108 bng 15 250 50 0 empty empty empty 17 7 0 10 -4034 -1
+-1;
+#X msg 43 -41 reportAcceleration 1;
+#X msg 49 -19 reportNunchuk 1;
+#X text 245 -27 Uses the Youngmusic Wiilib PD external. It can be found
+here. http://youngmusic.org/wiki/index.php/Wiilib;
+#X msg 18 -120 discover;
+#X text 245 -102 This patch uses the guitar controller for the wii
+and a bluetooth interface.;
+#X text 245 -69 On the wiimote press 1 + 2 Click on discover and wait
+until the wiimote connects. Click on the green bang. Click on disconnect
+to turn off the wiimote.;
+#X obj 449 63 cnv 15 225 160 empty empty output 20 12 0 14 -4034 -66577
+0;
+#X obj 472 166 *~ 0;
+#X obj 524 142 / 127;
+#X obj 528 114 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 462 199 dac~;
+#X obj 471 89 catch~ \$0-audio-out;
+#X obj 7 63 cnv 15 435 160 empty empty input 20 12 0 14 -233017 -66577
+0;
 #N canvas 332 246 450 300 \$0-buttons 0;
 #X obj 41 33 inlet;
 #X obj 41 86 unpack 0 0;
@@ -7,14 +35,9 @@
 #X connect 0 0 1 0;
 #X connect 1 0 3 0;
 #X connect 1 1 2 0;
-#X restore 9 10 pd \$0-buttons;
-#X obj 9 -117 r wiimote-command;
-#X obj 9 -90 wiimote wiimote-command;
-#X obj 88 113 *~ 0;
-#X obj 140 89 / 127;
-#X obj 144 61 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 1700 1;
-#X obj 78 146 dac~;
+#X restore 15 196 pd \$0-buttons;
+#X obj 15 89 r wiimote-command;
+#X obj 15 111 wiimote wiimote-command;
 #N canvas 0 0 354 225 \$0-accel 0;
 #X obj 11 27 inlet;
 #X obj 11 87 wiiAcc raw;
@@ -25,16 +48,8 @@
 #X connect 1 0 2 0;
 #X connect 1 1 3 0;
 #X connect 1 2 4 0;
-#X restore 31 -13 pd \$0-accel;
-#X obj 429 -122 cnv 15 230 185 empty empty empty 20 12 0 14 -258113
--66577 0;
-#X msg 473 10 disconnect;
-#X obj 439 33 s wiimote-command;
-#X msg 458 -60 reportClassic 1;
-#X msg 450 -86 setLED 9;
-#X obj 630 -101 bng 15 250 50 0 empty empty empty 17 7 0 10 -4034 -1
--1;
-#N canvas 40 51 892 370 \$0-process-guitar 1;
+#X restore 37 176 pd \$0-accel;
+#N canvas 40 51 892 370 \$0-process-guitar 0;
 #X obj 116 -197 inlet;
 #X msg 18 -15 0;
 #X msg 45 -15 1;
@@ -139,7 +154,7 @@
 #X obj 67 267 osc~;
 #X obj 24 313 throw~ \$0-audio-out;
 #X obj 235 138 nbx 5 14 -1e+37 1e+37 0 0 empty \$0-whammy empty 0 -8
-0 10 -262144 -1 -1 16 256;
+0 10 -262144 -1 -1 0 256;
 #X obj 149 211 +;
 #X obj 194 191 * 10;
 #X obj 235 169 - 15;
@@ -171,7 +186,7 @@
 #X msg 376 -15 -1;
 #X text 48 -82 Down Stroke;
 #X text 484 -83 Up Stroke;
-#N canvas 650 323 450 300 \$0-lead-tone 0;
+#N canvas 650 323 337 264 \$0-lead-tone 0;
 #X obj 31 19 inlet;
 #X obj 31 57 sel -1;
 #X msg 10 94 0;
@@ -284,9 +299,7 @@
 #X connect 47 0 49 0;
 #X connect 49 0 46 0;
 #X connect 50 0 14 0;
-#X restore 76 -35 pd \$0-process-guitar;
-#X obj 87 36 catch~ \$0-audio-out;
-#X msg 464 -34 reportAcceleration 1;
+#X restore 82 156 pd \$0-process-guitar;
 #N canvas 0 0 450 300 \$0-guitar-accel 0;
 #X obj 136 76 inlet;
 #X obj 136 109 unpack 0 0 0;
@@ -297,33 +310,26 @@
 #X connect 1 0 3 0;
 #X connect 1 1 4 0;
 #X connect 1 2 2 0;
-#X restore 99 -57 pd \$0-guitar-accel;
-#X msg 470 -12 reportNunchuk 1;
-#X text 408 145 Uses the Youngmusic Wiilib PD external. It can be found
-here. http://youngmusic.org/wiki/index.php/Wiilib;
-#X msg 439 -113 discover;
-#X text 6 -148 This patch uses the guitar controller for the wii and
-a bluetooth interface.;
-#X text 290 69 On the wiimote press 1 + 2 Click on discover and wait
-until the wiimote connects. Click on the green bang. Click on disconnect
-to turn off the wiimote.;
+#X restore 105 136 pd \$0-guitar-accel;
+#X text 208 156 <-- this is where most stuff happens;
+#X text 250 -123 wii guitar controller synth;
 #X connect 1 0 2 0;
-#X connect 2 0 0 0;
-#X connect 2 1 7 0;
-#X connect 2 3 14 0;
-#X connect 2 4 17 0;
-#X connect 3 0 6 0;
-#X connect 3 0 6 1;
-#X connect 4 0 3 1;
+#X connect 3 0 2 0;
+#X connect 4 0 2 0;
 #X connect 5 0 4 0;
-#X connect 9 0 10 0;
-#X connect 11 0 10 0;
-#X connect 12 0 10 0;
-#X connect 13 0 12 0;
-#X connect 13 0 11 0;
+#X connect 5 0 3 0;
+#X connect 5 0 6 0;
+#X connect 5 0 7 0;
+#X connect 6 0 2 0;
+#X connect 7 0 2 0;
+#X connect 9 0 2 0;
 #X connect 13 0 16 0;
-#X connect 13 0 18 0;
-#X connect 15 0 3 0;
-#X connect 16 0 10 0;
-#X connect 18 0 10 0;
-#X connect 20 0 10 0;
+#X connect 13 0 16 1;
+#X connect 14 0 13 1;
+#X connect 15 0 14 0;
+#X connect 17 0 13 0;
+#X connect 20 0 21 0;
+#X connect 21 0 19 0;
+#X connect 21 1 22 0;
+#X connect 21 3 23 0;
+#X connect 21 4 24 0;
